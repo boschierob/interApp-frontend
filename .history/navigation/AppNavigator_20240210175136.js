@@ -1,0 +1,21 @@
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from '../Pages/LoginScreen';
+import LogoutScreen from '../Pages/LogoutScreen';
+import InterventionDeclarationScreen from '../Pages/InterventionDeclarationScreen';
+
+const Stack = createStackNavigator();
+
+const AppNavigator = () => {
+    return (
+        <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Logout" component={LogoutScreen} />
+            <Stack.Screen name="InterventionDeclarationScreen" component={InterventionDeclarationScreen} />
+        </Stack.Navigator>
+
+
+    );
+};
+
+export default AppNavigator;

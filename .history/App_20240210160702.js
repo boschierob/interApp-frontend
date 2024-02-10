@@ -5,7 +5,7 @@ import AppNavigator from './navigation/AppNavigator'; // Importer AppNavigator.j
 const App = () => {
   return (
     <NavigationContainer>
-      <AppNavigator /> 
+      <AppNavigator /> {/* Utiliser AppNavigator comme composant racine */}
     </NavigationContainer>
   );
 };
