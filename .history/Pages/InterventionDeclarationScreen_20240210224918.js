@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ActivityIndicator,TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const InterventionDeclarationScreen = () => {
   const route = useRoute();
@@ -35,7 +33,7 @@ const InterventionDeclarationScreen = () => {
 
   // Fonction pour récupérer les données de l'utilisateur depuis le serveur
   const fetchUserData = async () => {
-    const storedToken = await AsyncStorage.getItem('token')
+    const storedToken = await await AsyncStorage.getItem('token')
     try {
       // Faire l'appel vers l'endpoint sécurisé sur le serveur pour récupérer les données de l'utilisateur
       const response = await fetch('https://interapi-odap.onrender.com/auth-endpoint', {
@@ -82,22 +80,10 @@ const InterventionDeclarationScreen = () => {
       </View>
     );
   }
-
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bonjour {userData.username}</Text>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {userData ? (
-        <>
-          <Text>Nom: {userData.username}</Text>
-          <Text>Statut: {userData.statut}</Text>
-          <Text>Email: {userData.email}</Text>
-          {/* Afficher d'autres informations de l'utilisateur si nécessaire */}
-        </>
-      ) : (
-        <Text>Aucune donnée utilisateur disponible</Text>
-      )}
-    </View>
+      <Text style={styles.title}>{userEmail}</Text>
       
       <Text style={styles.title}>Déclaration d'intervention</Text>
 

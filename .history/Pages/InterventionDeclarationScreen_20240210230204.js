@@ -35,7 +35,7 @@ const InterventionDeclarationScreen = () => {
 
   // Fonction pour récupérer les données de l'utilisateur depuis le serveur
   const fetchUserData = async () => {
-    const storedToken = await AsyncStorage.getItem('token')
+    const storedToken = await await AsyncStorage.getItem('token')
     try {
       // Faire l'appel vers l'endpoint sécurisé sur le serveur pour récupérer les données de l'utilisateur
       const response = await fetch('https://interapi-odap.onrender.com/auth-endpoint', {
