@@ -40,13 +40,14 @@ const LoginScreen = ({ navigation }) => {
             // Récupérer le JWT en réponse
             const data = await response.json();
             const token = data.token;
-        
+            const userDatas = data.statut;
+            console.log(`token : ${token} and user: ${userDatas}`);
 
             // Stocker le JWT localement dans AsyncStorage
             await AsyncStorage.setItem('jwtToken', token);
             // Assurez-vous de sécuriser le stockage du JWT : 
 
-            navigation.navigate('InterventionDeclarationScreen', { userEmail: data.email });
+            navigation.navigate('InterventionDeclarationScreen');
         } catch (error) {
             // Gérer les erreurs de connexion
             console.error('Zut:', error.message);

@@ -3,6 +3,18 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('jwtToken');
+      if (value !== null) {
+        // We have data!!
+         return value
+      }
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
 
 // Définition du composant LoginScreen
 const LoginScreen = ({ navigation }) => {
@@ -40,13 +52,16 @@ const LoginScreen = ({ navigation }) => {
             // Récupérer le JWT en réponse
             const data = await response.json();
             const token = data.token;
-        
+            console.log(`token : ${token}`);
 
             // Stocker le JWT localement dans AsyncStorage
             await AsyncStorage.setItem('jwtToken', token);
+
+            console.log('Utilisateur connecté, JWT:', retrieveData);  
             // Assurez-vous de sécuriser le stockage du JWT : 
 
-            navigation.navigate('InterventionDeclarationScreen', { userEmail: data.email });
+
+            navigation.navigate('InterventionDeclarationScreen');
         } catch (error) {
             // Gérer les erreurs de connexion
             console.error('Zut:', error.message);

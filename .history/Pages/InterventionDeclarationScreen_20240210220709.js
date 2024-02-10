@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 
-const InterventionDeclarationScreen = () => {
-  const route = useRoute();
-  // Accédez aux paramètres à partir de route.params
+const InterventionDeclarationScreen = (route) => {
   const { userEmail } = route.params;
   // État pour stocker les déclarations d'intervention
   const [interventions, setInterventions] = useState([]);

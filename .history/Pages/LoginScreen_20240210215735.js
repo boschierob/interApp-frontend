@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
             await AsyncStorage.setItem('jwtToken', token);
             // Assurez-vous de sécuriser le stockage du JWT : 
 
-            navigation.navigate('InterventionDeclarationScreen', { userEmail: data.email });
+            navigation.navigate('InterventionDeclarationScreen');
         } catch (error) {
             // Gérer les erreurs de connexion
             console.error('Zut:', error.message);
