@@ -35,7 +35,7 @@ const InterventionDeclarationScreen = () => {
 
   // Fonction pour récupérer les données de l'utilisateur depuis le serveur
   const fetchUserData = async () => {
-    const storedToken = await AsyncStorage.getItem('jwtToken')
+    const storedToken = await AsyncStorage.getItem('token')
     console.log(`stored token : ${storedToken}`);
     try {
       // Faire l'appel vers l'endpoint sécurisé sur le serveur pour récupérer les données de l'utilisateur
