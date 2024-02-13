@@ -3,6 +3,8 @@ import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, S
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
  
+import { enGB, registerTranslation } from 'react-native-paper-dates'
+registerTranslation('en-GB', enGB)
 import DatePickerComponent from '../utilsComponents/DatePickerComponent';
 
 const InterventionDeclarationScreen = () => {

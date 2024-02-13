@@ -3,7 +3,7 @@ import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, S
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
  
-import DatePickerComponent from '../utilsComponents/DatePickerComponent';
+import DatePickerComponent from '../utilsComponents.DatePickerComponent';
 
 const InterventionDeclarationScreen = () => {
   const route = useRoute();

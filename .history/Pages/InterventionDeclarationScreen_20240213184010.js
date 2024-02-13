@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import DatePickerComponent from '../utilsComponent/DatePickerComponent';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
- 
-import DatePickerComponent from '../utilsComponents/DatePickerComponent';
+
 
 const InterventionDeclarationScreen = () => {
   const route = useRoute();
@@ -18,7 +18,7 @@ const InterventionDeclarationScreen = () => {
   const [interventions, setInterventions] = useState([]);
 
   // États pour les champs du formulaire
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [date, setDate] = useState('');
   const [client, setClient] = useState('');
   const [description, setDescription] = useState('');
 
@@ -105,7 +105,10 @@ const InterventionDeclarationScreen = () => {
 
       {/* Formulaire de déclaration d'intervention */}
       <Text style={styles.label}>Date de l'intervention :</Text>
-      <DatePickerComponent />
+      <DatePickerComponent 
+      selectedDate={selectedDate} 
+      onDateChange={setSelectedDate} 
+      />
       <Text 
       style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>
