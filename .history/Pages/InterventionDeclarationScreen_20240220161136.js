@@ -112,8 +112,9 @@ const InterventionDeclarationScreen = () => {
 
       {/* Formulaire de déclaration d'intervention */}
       <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers}/>
+      {!selectedValue === null || selectedValue === undefined ? (<Text>Nom du client :{selectedValue}</Text>) : <Text style={{"color": "red"}}>Aucun client sélectionné</Text>}
       
-      <Text>{selectedValue!== null && (`Nom du client : ${selectedValue}`)}</Text>
+
       <Text style={styles.label}>Date de l'intervention :</Text>
       <DatePickerComponent />
       <Text 

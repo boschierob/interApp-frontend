@@ -112,13 +112,17 @@ const InterventionDeclarationScreen = () => {
 
       {/* Formulaire de déclaration d'intervention */}
       <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers}/>
-      
-      <Text>{selectedValue!== null && (`Nom du client : ${selectedValue}`)}</Text>
       <Text style={styles.label}>Date de l'intervention :</Text>
       <DatePickerComponent />
       <Text 
       style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nom du client"
+        value={client}
+        onChangeText={text => setClient(text)}
+      />
       <TextInput
         style={styles.input}
         placeholder="Description de l'intervention"

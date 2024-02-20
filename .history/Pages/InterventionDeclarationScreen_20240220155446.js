@@ -19,16 +19,10 @@ const InterventionDeclarationScreen = () => {
   const [interventions, setInterventions] = useState([]);
 
   // États pour les champs du formulaire
-  const [selectedValue, setSelectedValue ] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [client, setClient] = useState('');
   const [description, setDescription] = useState('');
 
-
-  const onValueChange = (value) => {
-    setSelectedValue(value)
-  }
-  
   // Fonction pour gérer la soumission du formulaire
   const handleSubmit = () => {
     // Ajouter la nouvelle déclaration à la liste des interventions
@@ -111,14 +105,18 @@ const InterventionDeclarationScreen = () => {
       <Text style={styles.title}>Déclaration d'intervention</Text>
 
       {/* Formulaire de déclaration d'intervention */}
-      <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers}/>
-      
-      <Text>{selectedValue!== null && (`Nom du client : ${selectedValue}`)}</Text>
+      <CustomerPicker customersArray={userData.customers}/>
       <Text style={styles.label}>Date de l'intervention :</Text>
       <DatePickerComponent />
       <Text 
       style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nom du client"
+        value={client}
+        onChangeText={text => setClient(text)}
+      />
       <TextInput
         style={styles.input}
         placeholder="Description de l'intervention"
