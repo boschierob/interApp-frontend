@@ -30,9 +30,6 @@ const InterventionDeclarationScreen = () => {
   const onValueChange = (value) => {
     setSelectedValue(value)
   }
-  const onDateChange = (newDate) => {
-    setSelectedDate(newDate)
-  }
 
   // Fonction pour gérer la soumission du formulaire
   const handleSubmit = () => {
@@ -121,7 +118,7 @@ const InterventionDeclarationScreen = () => {
 
       <Text>{selectedValue !== null && (`Nom du client : ${selectedValue}`)}</Text>
       <Text style={styles.label}>Date de l'intervention :</Text>
-      <DatePickerComponent selectedDate={selectedDate} onDateChange={onDateChange}/>
+      <DatePickerComponent />
       <Text
         style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>

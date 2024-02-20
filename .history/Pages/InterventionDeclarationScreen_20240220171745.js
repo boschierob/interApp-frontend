@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+ 
 import MyAvatar from '../utilsComponents/AvatarComponent';
 import ChipComponent from '../utilsComponents/ChipComponent';
 import DatePickerComponent from '../utilsComponents/DatePickerComponent';
@@ -21,7 +21,7 @@ const InterventionDeclarationScreen = () => {
   const [interventions, setInterventions] = useState([]);
 
   // États pour les champs du formulaire
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue ] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [client, setClient] = useState('');
   const [description, setDescription] = useState('');
@@ -30,10 +30,7 @@ const InterventionDeclarationScreen = () => {
   const onValueChange = (value) => {
     setSelectedValue(value)
   }
-  const onDateChange = (newDate) => {
-    setSelectedDate(newDate)
-  }
-
+  
   // Fonction pour gérer la soumission du formulaire
   const handleSubmit = () => {
     // Ajouter la nouvelle déclaration à la liste des interventions
@@ -104,26 +101,26 @@ const InterventionDeclarationScreen = () => {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {userData ? (
           <>
-            <ChipComponent mode='flat' icon='information' dataToShow={userData.username} />
-            <ChipComponent mode='flat' icon='account-tie' dataToShow={userData.statut} />
-            <ChipComponent mode='flat' icon='email-open' dataToShow={userData.email} />
-            {/* Afficher d'autres informations de l'utilisateur si nécessaire */}
+          <ChipComponent mode='flat' icon='information' dataToShow={userData.username} maxFontSizeMultiplier="1000"/>
+          <ChipComponent mode='flat' icon='account-tie' dataToShow={userData.statut}/>
+          <ChipComponent mode='flat' icon='email-open' dataToShow={userData.email}/>
+              {/* Afficher d'autres informations de l'utilisateur si nécessaire */}
           </>
         ) : (
           <Text>Aucune donnée utilisateur disponible</Text>
         )}
       </View>
 
-      <Text style={styles.title}>Déclaration d'intervention :</Text>
+      <Text style={styles.title}>Déclaration d'intervention</Text>
 
       {/* Formulaire de déclaration d'intervention */}
-      <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers} />
-
-      <Text>{selectedValue !== null && (`Nom du client : ${selectedValue}`)}</Text>
+      <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers}/>
+      
+      <Text>{selectedValue!== null && (`Nom du client : ${selectedValue}`)}</Text>
       <Text style={styles.label}>Date de l'intervention :</Text>
-      <DatePickerComponent selectedDate={selectedDate} onDateChange={onDateChange}/>
-      <Text
-        style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
+      <DatePickerComponent />
+      <Text 
+      style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>
       <TextInput
         style={styles.input}
@@ -200,13 +197,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  declaration: {
-    marginBottom: 100,
-    padding: 10,
-    borderWidth: 1,
-  },
   interventionItem: {
-    marginBottom: 100,
+    marginBottom: 10,
     padding: 10,
     borderWidth: 1,
     borderColor: '#ccc',

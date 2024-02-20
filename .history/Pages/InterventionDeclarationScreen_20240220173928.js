@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Divider } from 'react-native-paper';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,9 +30,6 @@ const InterventionDeclarationScreen = () => {
 
   const onValueChange = (value) => {
     setSelectedValue(value)
-  }
-  const onDateChange = (newDate) => {
-    setSelectedDate(newDate)
   }
 
   // Fonction pour gérer la soumission du formulaire
@@ -113,29 +111,33 @@ const InterventionDeclarationScreen = () => {
           <Text>Aucune donnée utilisateur disponible</Text>
         )}
       </View>
+      <View>
+        <Text style={styles.title}>Déclaration d'intervention :</Text>
 
-      <Text style={styles.title}>Déclaration d'intervention :</Text>
+        {/* Formulaire de déclaration d'intervention */}
+        <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers} />
 
-      {/* Formulaire de déclaration d'intervention */}
-      <CustomerPicker selectedValue={selectedValue} onValueChange={onValueChange} customersArray={userData.customers} />
+        <Text>{selectedValue !== null && (`Nom du client : ${selectedValue}`)}</Text>
+        <Text style={styles.label}>Date de l'intervention :</Text>
+        <DatePickerComponent />
+        <Text
+          style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
+        </Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Description de l'intervention"
+          multiline={true}
+          numberOfLines={4}
+          value={description}
+          onChangeText={text => setDescription(text)}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Enregistrer</Text>
+        </TouchableOpacity>
 
-      <Text>{selectedValue !== null && (`Nom du client : ${selectedValue}`)}</Text>
-      <Text style={styles.label}>Date de l'intervention :</Text>
-      <DatePickerComponent selectedDate={selectedDate} onDateChange={onDateChange}/>
-      <Text
-        style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
-      </Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Description de l'intervention"
-        multiline={true}
-        numberOfLines={4}
-        value={description}
-        onChangeText={text => setDescription(text)}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Enregistrer</Text>
-      </TouchableOpacity>
+
+      </View>
+
 
       {/* Liste des anciennes déclarations d'interventions */}
       <Text style={styles.subtitle}>Anciennes déclarations :</Text>
@@ -200,9 +202,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  declaration: {
-    marginBottom: 100,
-    padding: 10,
+  declarationContainer: {
+    marginBottom: 10,
+    padding: 1,
     borderWidth: 1,
   },
   interventionItem: {

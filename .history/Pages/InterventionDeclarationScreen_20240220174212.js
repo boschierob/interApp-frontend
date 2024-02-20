@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Divider } from 'react-native-paper';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,9 +30,6 @@ const InterventionDeclarationScreen = () => {
 
   const onValueChange = (value) => {
     setSelectedValue(value)
-  }
-  const onDateChange = (newDate) => {
-    setSelectedDate(newDate)
   }
 
   // Fonction pour gérer la soumission du formulaire
@@ -113,7 +111,7 @@ const InterventionDeclarationScreen = () => {
           <Text>Aucune donnée utilisateur disponible</Text>
         )}
       </View>
-
+          <Divider/>
       <Text style={styles.title}>Déclaration d'intervention :</Text>
 
       {/* Formulaire de déclaration d'intervention */}
@@ -121,7 +119,7 @@ const InterventionDeclarationScreen = () => {
 
       <Text>{selectedValue !== null && (`Nom du client : ${selectedValue}`)}</Text>
       <Text style={styles.label}>Date de l'intervention :</Text>
-      <DatePickerComponent selectedDate={selectedDate} onDateChange={onDateChange}/>
+      <DatePickerComponent />
       <Text
         style={styles.selectedDate}>{selectedDate.toLocaleDateString()}
       </Text>
